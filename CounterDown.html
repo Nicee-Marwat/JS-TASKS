@@ -68,7 +68,6 @@
       var date1 = document.getElementById("date");
       var eventTime = document.querySelector(".event");
       var h3_tag = document.getElementById("time");
-
       var days, hours, minutes, seconds, time, time_diff, date3;
 
       function check() {
@@ -81,7 +80,6 @@
 
             if (date3 > date2) {
               var date4 = date3.getTime();
-
               setInterval(Difference, 1000, date4, 0);
             } else if (date2 > date3) {
               var date4 = date3.getTime();
@@ -102,12 +100,24 @@
         } else {
           time_diff = date - date1;
         }
-        seconds = Math.floor((time_diff % (1000 * 60)) / 1000);
-        minutes = Math.floor((time_diff % (1000 * 60 * 60)) / (1000 * 60));
-        hours = Math.floor(
+
+        var days = Math.floor(time_diff / (1000 * 60 * 60 * 24));
+        // 1000*60*60*24 = represents no. of miliseconds in a day
+
+        var hours = Math.floor(
           (time_diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
         );
-        days = Math.floor(time_diff / (1000 * 60 * 60 * 24));
+        // 1000*60*60 = reperesents no. of miliseconds in an hour
+        // time_diff%(1000*60*60*24) = represents no. of days
+
+        var minutes = Math.floor((time_diff % (1000 * 60 * 60)) / (1000 * 60));
+        // 1000*60 = represents no. of milisends in minute
+        // time_diff%(1000*60*60) = represents no. of hours
+
+        var seconds = Math.floor((time_diff % (1000 * 60)) / 1000);
+        // 1000 = represnts miliseconds
+        // time_diff%(1000*60) = represents the no. of minutes
+
         document.getElementById("time").innerHTML =
           days +
           "d &nbsp&nbsp" +
